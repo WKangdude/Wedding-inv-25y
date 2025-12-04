@@ -1,42 +1,118 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Reset básico */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Times New Roman', serif;
+  background-color: #000; /* Fondo negro por si tarda en cargar el video */
+  color: #fff;
+}
+
+/* --- CONTROL DEL SCROLL --- */
+/* Bloqueamos el scroll hasta que termine la intro */
+.scroll-locked {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.scroll-enabled {
+  overflow-y: auto;
+}
+
+/* --- PANTALLA DE CARGA --- */
+.loader-screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #fdfcf8; /* Color crema */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100; /* Encima de todo */
+  color: #333;
+}
+
+.spinner {
+  width: 40px; height: 40px;
+  border: 4px solid #ddd;
+  border-top-color: #d4af37; /* Dorado */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* --- SECCIÓN HERO (VIDEO) --- */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Pantalla completa */
+  overflow: hidden;
+}
+
+/* Estilos compartidos para ambos videos */
+.video-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; /* Asegura que cubra todo sin deformarse */
+  transition: opacity 1s ease; /* Transición suave entre videos */
+}
+
+/* Clases para ocultar/mostrar videos suavemente */
+.visible { opacity: 1; z-index: 1; }
+.hidden { opacity: 0; z-index: 0; }
+
+/* Contenido sobre el video (Texto) */
+.hero-content {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10; /* Encima de los videos */
+  background: rgba(0,0,0,0.2); /* Sutil oscurecimiento para leer mejor */
+}
+
+.title-names {
+  font-size: 3.5rem;
+  font-family: cursive; /* Puedes importar una Google Font elegante */
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.subtitle {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #f0e6d2;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.scroll-hint {
+  position: absolute;
+  bottom: 30px;
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.8;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* --- SECCIÓN INFO --- */
+.info-section {
+  position: relative;
+  background: #fdfcf8;
+  color: #4a4a4a;
+  padding: 60px 20px;
+  min-height: 100vh;
+  z-index: 20; /* Asegura que tape el video al subir */
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.content-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
 }
